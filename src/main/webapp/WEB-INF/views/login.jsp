@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri ="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
 		<div class="row">
 			<h1>Services</h1>
 		</div>
-		<c:url value="/login" var="loginVar" />
+		<c:url value="/login" var="loginVar"/>
 		<form id="appointment-form" action="${loginVar}" method="POST">
 			<div class="form-group">
 				<label for="make">Username</label>
@@ -43,9 +43,15 @@
 				<input type="password" name="custom_password" class="form-control" />
 			</div>
 			<sec:csrfInput/>
-			<c:if test="${param.error != null}">
-				<p>Invalid username or password!</p>
+
+			<c:if test="${param.logout != null }">
+				<p>You have successfully been logged out.</p>
 			</c:if>
+
+			<c:if test="${param.error != null }">
+				<p>Invalid Username and Password.</p>
+			</c:if>
+
 			<button type="submit" id="btn-save" class="btn btn-primary">Login</button>
 		</form>
 	</div>
